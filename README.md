@@ -1,4 +1,4 @@
-# Battle
+# Battle [![Build Status](https://travis-ci.org/ck3g/battle.png?branch=master)](https://travis-ci.org/ck3g/battle)
 
 This gem is extraction from my [Battle45](https://github.com/ck3g/battle45) project
 
