@@ -1,7 +1,7 @@
 module Battle
   class Game
     attr_reader :name, :email, :id, :coords, :status, :ships, :prize,
-      :response, :nuke_status
+      :response, :nuke_status, :sunk
 
     STATUSES = %w[start victory defeat]
 
@@ -57,6 +57,8 @@ module Battle
     end
 
     def sink_ship(name)
+      @sunk = name
+      return if name.nil?
       ships.delete ships.find { |ship| ship.is? name }
     end
 
@@ -69,7 +71,7 @@ module Battle
     end
 
     def handle_nuke
-      sink_ship response['sunk'] unless response['sunk'].nil?
+      sink_ship response['sunk']
       handle_nuke_status
       handle_defeat
       handle_victory

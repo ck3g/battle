@@ -142,6 +142,11 @@ describe Battle::Game do
         expect(game.nuke_status).to eq 'hit'
       end
 
+      it 'sets the sunk attribute to ship name' do
+        game.nuke(5, 9)
+        expect(game.sunk).to eq 'Battleship'
+      end
+
       it 'decrease ships count' do
         expect { game.nuke(5, 9) }.to change { game.ships.count }.by(-1)
       end
