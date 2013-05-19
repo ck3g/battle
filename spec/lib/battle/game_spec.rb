@@ -12,20 +12,18 @@ describe Battle::Game do
   end
   let(:register_response_body) { load_fixture "register" }
 
-  it "stores player name" do
-    expect(game.name).to eq "Bob"
-  end
-
-  it "stores player email" do
-    expect(game.email).to eq "bob@example.com"
-  end
+  subject { game }
+  its(:name) { should eq 'Bob' }
+  its(:email) { should eq 'bob@example.com' }
+  its(:status) { should eq 'init' }
 
   it 'stores the ships' do
     expect(game.ships.count).to eq 7
   end
 
-  it "init the game" do
-    expect(game.status).to eq "init"
+  context 'when init game with remote id' do
+    subject { Battle::Game.new id: 503 }
+    its(:status) { should eq 'start' }
   end
 
   describe "#register!" do

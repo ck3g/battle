@@ -5,11 +5,12 @@ module Battle
 
     STATUSES = %w[start victory defeat]
 
-    def initialize(name, email)
+    def initialize(name = nil, email = nil, id: nil)
       @name = name
       @email = email
+      @id = id
       @coords = [nil, nil]
-      @status = "init"
+      @status = id ? 'start': 'init'
       @ships = []
       @response = {}
       Battle.ships.each { |name| @ships << Ship.new(name) }
