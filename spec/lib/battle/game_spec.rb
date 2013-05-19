@@ -115,6 +115,11 @@ describe Battle::Game do
       it "don't change game status" do
         expect { game.nuke(5, 9) }.to_not change { game.status }
       end
+
+      it 'sets nuke_status to miss' do
+        game.nuke(5, 9)
+        expect(game.nuke_status).to eq 'miss'
+      end
     end
 
     context "when hit battleship" do
@@ -130,6 +135,11 @@ describe Battle::Game do
                                         "sunk" => "Battleship",
                                         "x" => 1,
                                         "y" => 7 })
+      end
+
+      it 'sets nuke_status to hit' do
+        game.nuke(5, 9)
+        expect(game.nuke_status).to eq 'hit'
       end
 
       it 'decrease ships count' do
